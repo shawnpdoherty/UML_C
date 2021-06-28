@@ -1,7 +1,7 @@
 /* employees.h - to support common employee processing  */
 
 /* Define Constants */
-#define NUM_EMPL 5
+#define NUM_EMPL 2
 #define STD_HOURS 40.0
 #define OT_RATE 1.5
 

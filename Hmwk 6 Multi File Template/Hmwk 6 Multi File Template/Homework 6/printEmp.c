@@ -28,16 +28,18 @@ void Output_Results_Screen ( struct employee employeeData[], int size )
    
     //create file header
     printf ( "\n\t\tShawn Doherty, C Programming, "
-                "Fifth Homework Assignment\n\n\n");
-    printf ("\tClock#  Wage  Hours   OT    Gross\n");
-    printf ("\t------  ----- -----  ----  -------\n");
+                "Sixth Homework Assignment\n\n\n");
+    
+    printf ("\t----------------------------------------------------------\n");
+    printf ("\tName                     Clock#  Wage  Hours   OT    Gross\n");
+    printf ("\t----------------------------------------------------------\n");
     
 
     /* print information about each employee */
     for (i = 0; i < size ; ++i)
     {
-        printf("\t%06li  %5.2f %4.1f   %4.1f %8.2f \n",
-        employeeData[i].id_number, employeeData[i].wage, employeeData[i].hours,
+        printf("\t%-5.10s, %-5.10s %-5c             %06li  %5.2f %4.1f   %4.1f %8.2f \n",
+        employeeData[i].emp_name.first_name, employeeData[i].emp_name.last_name, employeeData[i].emp_name.middle_initial, employeeData[i].id_number, employeeData[i].wage, employeeData[i].hours,
         employeeData[i].overtime, employeeData[i].gross);
 
         // update totals

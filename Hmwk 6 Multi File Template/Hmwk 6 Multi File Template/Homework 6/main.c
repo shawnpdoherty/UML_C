@@ -66,9 +66,9 @@ int main ()
 
         printf("\nEnter employee wage: \n");
         scanf("%f", &hourly_rate);
-        //employeeData[i].wage = hourly_rate;
+        employeeData[i].wage = hourly_rate;
 
-        printf("%s, %s %c : %li\n", employeeData[i].emp_name.last_name, employeeData[i].emp_name.first_name, employeeData[i].emp_name.middle_initial, employeeData[i].id_number);
+        //printf("%s, %s %c : %li : %f\n", employeeData[i].emp_name.last_name, employeeData[i].emp_name.first_name, employeeData[i].emp_name.middle_initial, employeeData[i].id_number, employeeData[i].wage);
         /* Prompt for the number of hours worked by the employee */
         employeeData[i].hours = Get_Hours (employeeData[i].id_number);
 
