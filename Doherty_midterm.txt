@@ -1,0 +1,277 @@
+//-----------------------------------------------------------------------------
+//
+// C Programming Midterm
+//
+// Name: Shawn Doherty
+//
+// Class: C Programming, Summer 2021
+//
+// Date: 06/25/21
+//
+// Description: Midterm assignment                
+//
+//-----------------------------------------------------------------------------
+
+1.      // Write a function that will return the area of a triangle 
+        float getTriangleArea(float base, float height)
+        {
+            // Area = ½ × b × h
+            float area = (.5 * base * height); 
+            
+            return (area);
+        }
+
+        // Write a function that will return the perimeter of a triangle
+        float getTrianglePerimeter(float sideA, float sideB, float sideC)
+        {
+            // Perimeter of a triangle is the sum of all sides
+            float perimeter = sideA + sideB + sideC;
+            return (perimeter);
+        }
+
+
+// 2) Write a function int frequency (int theArray [ ], int n, int x)
+// that counts the number of times the item x appears among the first n elements of theArray
+// and returns that count as the frequency of x in theArray.  Use integers for everything! 
+
+        int frequency (int theArray [ ], int n, int x)
+        {
+            int frequencyOfX = 0; // initialize frequency
+            for (int i = 0; i < n; i++) // use n as size of array
+            {
+                if (theArray[i] == x) // compare values to x
+                {
+                ++frequencyOfX; //increment frequency count   
+                }
+            }
+            return(frequencyOfX);
+        }
+
+// 3a) (Function) Represent the mathematical operation:  max (v, w, x, y, z) as a C function.  
+        
+        // pass 5 integer values
+        int max(int v, int w, int x, int y, int z)
+        {
+            int largestValue = 0; // declare & initialize largest value variable
+            int values[] = {v,w,x,y,z}; // convert parameters to array
+            for (int i = 0; i < 5; i++) // loop through array values
+            {
+                if (values[i] > largestValue) // if greater than the stored largest value
+                {
+                    largestValue = values[i]; // assign to largest value
+                }
+            }
+            return(largestValue); //return the largest value
+        }
+
+
+// 3b)(Code Segment) Rewrite    the mathematical operation:  max (v, w, x, y, z) as
+// a single statement using the conditional expression operator. 
+
+    // nested ternary starting at the front of the list and comparing down the line. 
+    // start with v and compare to see if it is the largest value, if not, see if w is largest,
+    // and continue through the list of parameters
+
+    max = ( v > w && v > x && v > y && v > z) ? v : (w > x && w > y && w > z) ? w : (x > y && x > z) ? x : ( y > z) ? y : z; 
+
+
+// 4) write a function which is passed a score, and returns a letter grade based on the score entered.
+
+        char letterGrader(int score)
+        {
+            char grade;
+
+            if (score < 0 || score > 100)
+            {
+                grade = 'I';
+            }
+            else if ( score >= 90 )
+            {
+                grade = 'A';
+            }
+            else if ( score >= 80)
+            {
+                grade = 'B';
+            }
+            else if (score >= 70)
+            {
+                grade = 'C';
+            }
+            else if (score >= 60)
+            {
+                grade = 'D';
+            }
+            else
+            {
+                grade = 'F';
+            }
+            return(grade);
+        }      
+
+// 5) Write a function that is passed an array of characters containing letter grades   
+// and prints a report that shows the total number of occurrences of each letter grade.  
+
+        // accept an arry and the size of the array for loop purposes
+        void reportGenerator(char array[], int size)
+        {
+            int grades[] = {0,0,0,0,0,0}; // create array to store totals
+            for(int x = 0; x < size; x++) // loop through array of grades
+            {
+                switch (array[x]) // compare array values to switch cases
+                {
+                    case 'A':
+                        ++grades[0];
+                        break;
+                    case 'a': // account for lowercase and increment correct value
+                        ++grades[0];
+                        break;
+                    case 'B':
+                        ++grades[1];
+                        break;
+                    case 'b':
+                        ++grades[1];
+                        break;
+                    case 'C':
+                        ++grades[2];
+                        break;
+                    case 'c':
+                        ++grades[2];
+                        break;
+                    case 'D':
+                        ++grades[3];
+                        break;
+                    case 'd':
+                        ++grades[3];
+                        break;
+                    case 'F':
+                        ++grades[4];
+                        break;
+                    case 'f':
+                        ++grades[4];
+                        break;
+                    
+                    default:  // any invalid case is counted as I
+                        ++grades[5];
+                        break;
+                }
+            }
+            
+            //print results to console
+            printf("\tGrade     Total\n");
+            printf("\t-----     -----\n");
+            printf("\tA         %i\n", grades[0]);
+            printf("\tB         %i\n", grades[1]);
+            printf("\tC         %i\n", grades[2]);
+            printf("\tD         %i\n", grades[3]);
+            printf("\tF         %i\n", grades[4]);
+            printf("\tI         %i\n", grades[5]);
+        }
+
+
+// 6) write a program that has at least two functions that can be called.   
+// Call these functions from a main function using the example information above.
+
+        #include <stdio.h>
+
+        //declare structure templates
+        struct defense
+        {
+            float goalieGamesWonPercent;
+            int goalieSaves;
+            float savesPercentage;
+            float savesRatio;
+        };
+
+        struct offense
+        {
+            float scoringPercentage;
+            float scoringRatio;
+            float gamesWonPercentage;
+        };
+
+        struct defense defensiveStats(struct defense d, int shots, int goals, int wins, int losses)
+        {
+            // Goalie Games Won Percentage = Games Won / (Games Won + Games Lost) 
+            d.goalieGamesWonPercent = (float) wins / (wins + losses); //cast win to float to get a float
+            // Goalie Saves = Shots on Goal - Goal Scored
+            d.goalieSaves = shots - goals;
+            // Saves Percentage = Goalie Saves / Shots on Goal
+            d.savesPercentage = (float) d.goalieSaves / shots; // cast saves to float for division
+            // Saves Ratio = Shots On Goal / Goalie Saves
+            d.savesRatio = shots / (float) d.goalieSaves; // cast saves to float for division
+            return(d);
+        }
+
+        struct offense offensiveStats(struct offense o, int shots, int goals, int wins, int losses)
+        {
+            // Scoring Percentage = (Scoring Attempts - Goals Scored ) / Scoring Attempts
+            o.scoringPercentage = (shots - goals) / (float) shots;
+            // Scoring Ratio = Shots On Goal / Goals Scored
+            o.scoringRatio = (float) shots / goals;
+            // Games Won Percentage = Team Games Won / ( Team Games Won + Team Games Lost ) 
+            o.gamesWonPercentage = (float) wins / (wins + losses);
+            return(o);   
+        }
+
+        int main(void) 
+        {
+            // declare 2 structures for defense and offense
+            struct defense teamDefense;
+            struct offense teamOffense;
+            // call functions to populate stats structures
+            teamDefense = defensiveStats(teamDefense, 40, 2, 7, 3);
+            teamOffense = offensiveStats(teamOffense, 7, 3, 3, 4);
+            
+            return 0;
+        }
+
+
+// 7) Write a function that raises an integer to a positive integer power. 
+
+        // Using a for loop multiply the base(x) n (exponent) times
+        long int x_to_the_n(int x, int n)
+        {
+            // declare and assign the result to start at 1 for multiplication 
+            long int result = 1;
+            // multiply the result by itself n times
+            for ( int counter = 0; counter < n; ++counter )
+            {
+                result = result * x; //  multiply the base times the exponent
+            }
+            return result;
+        }
+
+
+
+// 8) (Code Segment) Provide the code need to DECLARE an array of structures that could store information about a group of passports.  
+
+        struct date // structure with date information
+        {
+            int day; // hold day value
+            int month; // hold month value
+            int year; // hold year value
+        };
+
+        struct name // structure for name information
+        {
+            char givenName[60]; //first and middle names
+            char surName[60]; //last name
+        };
+
+        struct holder // structure for passport holder information
+        {
+            struct name issuedToName; // name passport issued to
+            struct date dateofBirth; // passport holder date of birth
+            char gender; // single char M, F or others
+            char birthPlace[100]; // location of birth
+        };  
+
+        struct passport // structure for passport information
+        {
+            char passPortnumber[10]; // Passport Number
+            struct holder passportHolder; // name of passport holder
+            struct date dateOfIssue; // date passport was issued
+            struct date dateOfExpire; // date passport expires
+            char countryOfIssue[4]; // alpha 3 code for country code       
+            char passportType;  // single char "P" for personal, "S" for service, "D" for diplomatic    
+        };
