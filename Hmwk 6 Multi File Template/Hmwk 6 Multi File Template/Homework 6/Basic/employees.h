@@ -1,22 +1,15 @@
 /* employees.h - to support common employee processing  */
 
 /* Define Constants */
-#define NUM_EMPL 2
+#define NUM_EMPL 5
 #define STD_HOURS 40.0
 #define OT_RATE 1.5
 
-struct name
-{
-    char first_name[10];
-    char middle_initial;
-    char last_name[10];
-
-};
 
 /* Define a global structure to pass employee data between functions */
 struct employee
 {
-    struct name emp_name;
+    char name[20];
     long id_number;
     float wage;
     float hours;
