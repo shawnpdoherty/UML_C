@@ -25,11 +25,19 @@ struct stats
     float min_gross;
 };
 
+/* Define a global structure for name data */
+struct name
+{
+    char first_name[20];
+    char middle_initial;
+    char last_name[10];
+};
+
 
 /* Define a global structure to pass employee data between functions */
 struct employee
 {
-    char name[20];
+    struct name employee_name;
     long id_number;
     float wage;
     float hours;
@@ -42,3 +50,4 @@ float Get_Hours (long int id_number);
 float Get_Overtime_Hours (float hours);
 float Get_Gross_Pay (float hours, float overtime, float wage);
 void Output_Results_Screen (struct employee emp [ ], struct stats employeeStats, int size);
+//struct employee Get_Employee_Info (int size);

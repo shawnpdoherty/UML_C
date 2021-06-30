@@ -1,6 +1,6 @@
 /**********************************************************************
 **
-** HOMEWORK: #6 Intermediate
+** HOMEWORK: #6 Advanced
 **
 ** Name: Shawn Doherty
 **
@@ -29,9 +29,9 @@ int main ()
         { "Jeff Ada", 34645, 12.25 },
         { "Anton Pascal", 127615, 10.00 }
     };
-
-    struct stats employeeStats = { 
-        0.0, 0.0, 0.0, 0.0 };
+    
+    //declare local struct for employeeStats
+    struct stats employeeStats; 
 
     int i;  /* loop and array index */
 

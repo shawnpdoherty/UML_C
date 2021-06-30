@@ -33,8 +33,11 @@ void Output_Results_Screen ( struct employee employeeData[], struct stats employ
     /* print information about each employee */
     for (i = 0; i < size ; ++i)
     {
-        printf ("\t%-20.20s %06li %5.2f  %4.1f %4.1f %8.2f \n",
-               employeeData[i].name,
+        //TODO FORMAT CORRECTLY
+        printf ("\t%s, %s %c %06li %5.2f  %4.1f %4.1f %8.2f \n",
+               employeeData[i].employee_name.last_name,
+               employeeData[i].employee_name.first_name,
+               employeeData[i].employee_name.middle_initial,
                employeeData[i].id_number,
                employeeData[i].wage,
                employeeData[i].hours,
