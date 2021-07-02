@@ -1,5 +1,7 @@
 #include <stdio.h>
+#include <string.h>
 #include "employees.h"
+
 
 /********************************************************************
 ** Function: Output_Results_Screen
@@ -24,19 +26,22 @@ void Output_Results_Screen ( struct employee employeeData[], struct stats employ
     int i; /* loop index */
     
     //create file header
-    printf ( "\n\t\tShawn Doherty, C Programming, "
-                "Sixth Homework Assignment\n\n\n");
+    printf ( "\n\t\tShawn Doherty, C Programming\n "
+                "\t\tSixth Homework Assignment: Advanced\n\n\n");
     printf ("\t-----------------------------------------------------\n");
-    printf ("\tName                 Clock# Wage  Hours   OT   Gross\n");
+    printf ("\tName                 Clock# Wage  Hours   OT    Gross\n");
     printf ("\t-----------------------------------------------------\n");
-    
+
     /* print information about each employee */
     for (i = 0; i < size ; ++i)
-    {
-        //TODO FORMAT CORRECTLY
-        printf ("\t%s, %s %c %06li %5.2f  %4.1f %4.1f %8.2f \n",
+    {  
+        // dynamically set the middle initial format based on the column width 
+        printf ("\t%s, %s %-*c %06li %5.2f  %4.1f %4.1f %8.2f\n",
                employeeData[i].employee_name.last_name,
                employeeData[i].employee_name.first_name,
+               // this formats the width of the entire name column
+               17 - (strlen(employeeData[i].employee_name.first_name) +
+               strlen(employeeData[i].employee_name.last_name)),
                employeeData[i].employee_name.middle_initial,
                employeeData[i].id_number,
                employeeData[i].wage,

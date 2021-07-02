@@ -1,6 +1,6 @@
 /**********************************************************************
 **
-** HOMEWORK: #6 Intermediate
+** HOMEWORK: #6 Advanced
 **
 ** Name: Shawn Doherty
 **
@@ -23,6 +23,18 @@ int main ()
 {
     /* Set up a local variable to store the employee information */
     struct employee employeeData[NUM_EMPL];
+    
+    /* TEST DATA */
+    /*struct employee employeeData[NUM_EMPL] = 
+    {
+       {98401,"Connie", 'J', "Cobol", 10.6, 51.0},
+       {526488,"Mary", 'P', "Apl", 9.75, 42.5},
+       {765349,"Frank", 'K', "Fortran", 10.50, 37.0},
+       {34645,"Jeff", 'B', "Ada", 12.25, 45.0},
+       {127615,"Anton", 'T', "Pascal", 10.00, 40.0}
+    }; */
+    
+
     struct stats employeeStats;  
     
     /* Populate employee information */

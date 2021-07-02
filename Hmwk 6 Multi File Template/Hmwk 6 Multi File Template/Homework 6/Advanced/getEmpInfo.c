@@ -1,6 +1,20 @@
 #include <stdio.h>
 #include "employees.h"
 
+/*******************************************************************
+** Function: Get_Employee_Info
+**
+** Purpose: Prompts for employee data(ID,Name,hourly rate)
+**
+** Parameters:
+**
+**   employeeData - a structure containing an array of employee data
+**   size - the number of employees to process.
+**
+** Returns: void
+**
+*******************************************************************/
+
 void Get_Employee_Info (struct employee employeeData [ ], int size)
 {
     for (int i = 0; i < NUM_EMPL; ++i)
