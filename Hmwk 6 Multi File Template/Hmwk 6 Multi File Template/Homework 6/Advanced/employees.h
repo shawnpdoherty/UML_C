@@ -50,4 +50,4 @@ float Get_Hours (long int id_number);
 float Get_Overtime_Hours (float hours);
 float Get_Gross_Pay (float hours, float overtime, float wage);
 void Output_Results_Screen (struct employee emp [ ], struct stats employeeStats, int size);
-//struct employee Get_Employee_Info (int size);
+void Get_Employee_Info (struct employee employeeData [ ], int size);
