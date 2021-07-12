@@ -138,7 +138,37 @@ void Get_Min_Max (struct employee * emp_ptr, struct stats * stats_ptr)
     }
 }
 
+/*******************************************************************
+** Function: Get_Employee_Info
+**
+** Purpose: prompts for thevarious input (name, clock, wage) 
+** and then returns back the pointer
+**
+** Parameters:
+**          current_ptr - pointer to employee node
+** 
+** Returns: Nothing(void)
+**
+*******************************************************************/
+void Get_Employee_Info (struct employee * current_ptr)
+{
+    /* Prompt for Employee Name and Hours */
+    printf("\nEnter first name for employee: ");
+    scanf("%s", &current_ptr->employee_name.first_name);
+    printf("\nEnter middle initial for employee: ");
+    scanf(" %c", &current_ptr->employee_name.middle_initial);
+    printf("\nEnter last name for employee: ");
+    scanf("%s", &current_ptr->employee_name.last_name);
+    printf("\nEnter hours worked: ");
+    scanf ("%f", &current_ptr->hours);
+    
+    /* Read in Employee ID and Hourly Wage */
+    printf("\nEnter employee ID: ");
+    scanf("%i", & current_ptr -> id_number);
 
+    printf("\nEnter employee hourly wage: ");
+    scanf("%f", & current_ptr -> wage);
+}
 
 /*----------------------------------------------------------------------------*/
 /*                                                                            */
@@ -153,7 +183,8 @@ void Get_Min_Max (struct employee * emp_ptr, struct stats * stats_ptr)
 /*                                                                            */
 /* OUTPUTS:      None                                                         */
 /*                                                                            */
-/* CALLS:        print_list, Get_Ot_Gross, Get_Total_Average, Get_Min_Max                 */
+/* CALLS:        print_list, Get_Ot_Gross, Get_Total_Average, Get_Min_Max     */
+/*               Get_Employee_Info                                            */
 /*                                                                            */
 /*----------------------------------------------------------------------------*/
 int main ()
@@ -180,23 +211,10 @@ int main ()
     /* create node and process each employee */
     while (more_data)
     {
-        /* Prompt for Employee Name and Hours as well here */
-        printf("\nEnter first name for employee: ");
-        scanf("%s", &current_ptr->employee_name.first_name);
-        printf("\nEnter middle initial for employee: ");
-        scanf(" %c", &current_ptr->employee_name.middle_initial);
-        printf("\nEnter last name for employee: ");
-        scanf("%s", &current_ptr->employee_name.last_name);
-        printf("\nEnter hours worked: ");
-        scanf ("%f", &current_ptr->hours);
-       
-        /* Read in Employee ID and Hourly Wage */
-        printf("\nEnter employee ID: ");
-        scanf("%i", & current_ptr -> id_number);
-
-        printf("\nEnter employee hourly wage: ");
-        scanf("%f", & current_ptr -> wage);
-
+        /* (silver)  call another function from main that prompts for the
+        *  various input (name, clock, wage) and then returns back the pointer.
+        */
+        Get_Employee_Info(current_ptr);
 
         /* Call Function to calculate Overtime and Gross */
         Get_Ot_Gross(current_ptr);

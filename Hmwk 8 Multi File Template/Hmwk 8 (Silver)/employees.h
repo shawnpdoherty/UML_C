@@ -57,3 +57,4 @@ void Get_Ot_Gross (struct employee * emp_ptr);
 void Get_Total_Average (struct employee * emp_ptr, struct stats *stats_ptr);
 /* Add other fucntion prototypes here as needed */
 void Get_Min_Max (struct employee * emp_ptr, struct stats * stats_ptr);
+void Get_Employee_Info (struct employee * current_ptr);
