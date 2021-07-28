@@ -1,3 +1,19 @@
+/************************************************************************/
+/*                                                                      */
+/*  HOMEWORK:   8                                                       */
+/*                                                                      */
+/*  Name:  Shawn Doherty                                                */
+/*                                                                      */
+/*  Class:  C Programming                                               */
+/*                                                                      */
+/*  Date:   6/12/2021                                                   */
+/*                                                                      */
+/*  Description:  Program which determines gross pay based on overtime  */
+/*                and outputs a formatted answer.  Employee information */
+/*                is stored in an array of structures and referenced    */
+/*                through the use of pointers.                          */
+/************************************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>   /* for malloc */
 #include <ctype.h>    /* for toupper */

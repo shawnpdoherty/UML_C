@@ -1,0 +1,515 @@
+//-----------------------------------------------------------------------------
+//
+// C Programming Final Exam
+//
+// Name: Shawn Doherty
+//
+// Class: C Programming, Summer 2021
+//
+// Date: 07/25/21
+//
+// Description: Final Exam                
+//
+//-----------------------------------------------------------------------------
+
+1) Write a macro for each of the following
+    
+    a) Area of a circle
+    // formula: Area = π radius^2
+    #define AREA_OF_CIRCLE(radius)3.14159*(radius*radius)
+
+    b) Area of a Square
+    // formula: Area = side^2
+    #define AREA_OF_SQUARE(side)side*side
+
+    c) Area of a Rectangle
+    // formula: Area = Length * Width
+    #define AREA_OF_RECTANGLE(length,width)length*width
+
+    d) Area of a Triangle
+    // formula: Area = base/2 * height
+    #define AREA_OF_TRIANGLE(base,height)(base/2)*height
+
+2) Write a function which will determine how many words are in a given string.
+
+
+    //********************************************************************
+    // Function: wordsInString()
+    //
+    // Purpose:    determine how many words are in a given string. Assume 
+    // one or more consecutive white spaces is a delimiter between words, 
+    // and that the string passed is null terminated.             
+    //
+    // Parameters:  character array string
+    //
+    // Returns: int containing number of words in a given string
+    //
+    //********************************************************************
+
+    int wordsInString(char *string)
+    {
+        int wordcount = 1; // init the word count to int 1. 
+        int x = 0; // value to use to iterate through char array
+        
+        // checking for null point terminated array
+        while(string[x] != '\0'){
+
+            // check for one or more consecutive white spaces
+            if (string[x] == 32 && string[x-1] != 32)
+            {
+                ++wordcount;
+            }
+            // increment array
+            ++x;
+        }
+        return(wordcount);
+    }
+
+3) Write a function passed a month, day, and year and determine date is valid.
+
+    //********************************************************************
+    // Function: validDate()
+    //
+    // Purpose: determine date is valid            
+    //
+    // Parameters:  
+    //      month - int containing month value
+    //      day - int containing day value
+    //      year - int containing year value (in yyyy notation)
+    //
+    // Returns: int 1(TRUE) for valid date, 0(FALSE) if date is not valid. 
+    //********************************************************************
+    int validDate(int month, int day, int year)
+    {
+        int isValid = 0;
+
+        // Jan March May July August October December all have 31 days
+        if((day>=1 && day<=31) && (month==1 || month==3 || month==5 || 
+            month==7 || month==8 || month==10 || month==12))
+        {
+            isValid = 1;
+        }
+        
+        // April June September November all have 30 days
+        else if((day>=1 && day<=30) && (month==4 || month==6 || month==9 || month==11))
+        {
+            isValid = 1;
+        }
+        // Feburary has 28 days
+        else if((day>=1 && day<=28) && (month==2))
+        {
+            isValid = 1;
+        }
+        
+        // leap year day formula
+        else if(day==29 && month==2 && (year%400==0 || (year%4==0 && year%100!=0)))
+        {
+            isValid = 1;
+        }
+        
+        return(isValid);
+    }
+
+4) Write a function that takes the values of a two-card blackjack HAND as input, 
+and returns the point total of the hand.
+
+    //********************************************************************
+    // Function: getHandAndReturnPoints()
+    //
+    // Purpose:  takes the values of a two-card blackjack HAND as input, 
+    //           and returns the point total of the hand.      
+    //
+    // Parameters: none
+    //      
+    // Returns: int pointTotal (the point total of the hand)
+    //********************************************************************
+
+    int getHandAndReturnPoints()
+    {
+        // set array for a 2 card Hand
+        char card[2];
+        // set pointTotal for return
+        int pointTotal = 0;
+        
+        // take the values of a two-card blackjack HAND as input
+        printf("Enter Cards: ");
+        scanf("%c %c", &card[0], &card[1]);
+        
+        for (int x = 0; x < 2; x++)
+        {
+            // convert chars 2-9 to their face value
+            if (card[x] >= 50 && card[x] <= 57)
+            {
+                pointTotal = pointTotal + (card[x] - 48);
+            }
+            
+            // the cards 'T', 'K', 'Q', 'J' are worth 10 points
+            else if (card[x] == 84 || card[x] == 75 || card[x] == 81 || card[x] == 74 )
+            {
+                pointTotal = pointTotal + 10;
+            }
+                        
+            //  'A' is worth 11 points      
+            else if (card[x] == 65)
+            {
+                // unless it comes with another ace, then that second ace is worth 1 point
+                if (card[x] == 65 && card[x+1] == 65)
+                {
+                    pointTotal = 12;
+                    printf("\tThe score is %i", pointTotal);
+                    return (pointTotal);
+                }
+                pointTotal = pointTotal + 11;
+            }
+            
+            // The program should be able to catch incorrect input
+            else 
+            {
+                printf("\t%c is not a valid card", card[x]);
+                return 0;
+            }
+        }
+
+        printf("\tThe score is %i", pointTotal);
+        return (pointTotal);
+    }
+
+5) Write a  function to determine is a given word is legal.
+    
+    //********************************************************************
+    // Function: validWord()
+    //
+    // Purpose: determine if a word is valid            
+    //
+    // Parameters:  
+    //             word - string array of char
+    //
+    // Returns: int 1(TRUE) for valid word, 0(FALSE) if word is not valid. 
+    //********************************************************************
+    int validWord(char *word)
+    {
+        int x = 0;
+        // read string until null terminator
+        while (word[x] != '\0') 
+        {
+            // if any of the values are a match for a vowel the word is valid
+            if( word[x] == 'A' || word[x] == 'a' ||
+                word[x] == 'E' || word[x] == 'e' ||
+                word[x] == 'I' || word[x] == 'i' || 
+                word[x] == 'O' || word[x] == 'o' ||
+                word[x] == 'U' || word[x] == 'u' ||
+                word[x] == 'Y' || word[x] == 'y')
+            {
+                printf("word is legal\n");
+                return 1;
+            }
+            ++x;
+        }
+        
+        printf("word is not legal\n");
+        return 0;
+    }
+
+6) Write a function that will determine if a given string is a palindrome.
+
+    #include <stdio.h>
+    #include <string.h>
+    #include <ctype.h>
+
+    //********************************************************************
+    // Function: validPalindrom()
+    //
+    // Purpose: determine if a word or phrase is palindrome            
+    //
+    // Parameters:  
+    //             phrase - string array of char
+    //
+    // Returns: int 1(TRUE) for palindrome, 0(FALSE) if not palindrome. 
+    //********************************************************************
+
+    int validPalindrome(char phrase[])
+    {
+        // create start and end points 
+        int a = 0;
+        int z = strlen(phrase) - 1;
+    
+        // iterate through phrase 
+        while (a > z)
+        {
+            // if encounter a non-alpha character move right
+            if (! isalpha(phrase[a]))
+            {
+                a++;
+            }
+            // if encounter a non-alpha character move left
+            if (! isalpha(phrase[z]))
+            {
+                z--;
+            }
+            // convert to lowercase for comparison, exit if not match 
+            if (tolower(phrase[a++]) != tolower(phrase[z--]))
+            {
+                //not palindrome; false
+                return 0;
+            }
+        }
+        // is plaindrome; true
+        return 1;
+    }
+
+
+7) Write a function that will return in a structure characteristics of a given string:          
+    
+    // we will includde the string and ctype headers to include functions needed
+    #include <stdio.h>
+    #include <string.h>
+    #include <ctype.h>
+
+    // create structure of string characteristics
+    struct stringInfo
+    {
+        int length;    // string length
+        int uppers;    // number of upper case characters
+        int lowers;    // number of lower case characters
+        int digits;    // number of digits
+        int blanks;    // number of blank spaces
+        int nonalphas; // number of non-alphanumeric characters(includes spaces)
+    };
+
+    //********************************************************************
+    // Function: getStringInfo()
+    //
+    // Purpose: return struct containing information about the passed string           
+    //
+    // Parameters:  
+    //             phrase - string to be analyzed
+    //
+    // Returns:
+    //    totals - struct of type stringInfo(characteristics of given string)
+    //********************************************************************
+    struct stringInfo getStringInfo(char *phrase)
+    {
+        struct stringInfo totals = {0, 0, 0, 0, 0, 0};
+        char *string = phrase;
+
+        totals.length = strlen(string);
+        for (string; *string; string++)
+        {
+            if (isupper(*string))
+            {
+                ++totals.uppers;
+            }
+            if (islower(*string))
+            {
+                ++totals.lowers;
+            }
+            if (isdigit(*string))
+            {
+                ++totals.digits;
+            }
+            if (isspace(*string))
+            {
+                ++totals.blanks;
+            }
+            if (!isalpha(*string))
+            {
+                ++totals.nonalphas;
+            }
+        }
+        return (totals);
+    }
+
+8) Develop a set of function(s) to compute various offensive statistics on baseball.
+/*The following information will be available on each player:
+Number of Walks (BB), Strike Outs (SO), Hit by Pitch (HP), Sac Flys (SF), Singles,
+Doubles (2B), Triples (3B), and Home Runs (HR) as well as Number of At Bats (AB).*/
+
+    // create struct based on given information
+    struct playerStats
+    {
+        int BB; // walks
+        int SO; // strikeouts
+        int HP; // hit by pitch
+        int SF; // sacrifice flys
+        int _1B; // Singles
+        int _2B; // Doubles
+        int _3B; // Triples
+        int HR; // home runs
+        int AB; // at bats
+    };
+    
+    //********************************************************************
+    // Function: calcTotalBases()
+    //
+    // Purpose: calculate total bases:          
+    //         Number of (Singles + [2 x Doubles] +[ 3 x Triples] + [4 x Home Runs]
+    //
+    // Parameters:  
+    //             player - struct of type playerStats
+    //             contains player statistics needed for calculating
+    //
+    // Returns:
+    //    totalbases - int of total bases
+    //********************************************************************
+
+    int calcTotalBases(struct playerStats player)
+    {
+        int totalBases;
+        // Number of (Singles + [2 x Doubles] +[ 3 x Triples] + [4 x Home Runs])
+        totalBases = player._1B + (2 * player._2B) + (3 * player._3B)
+                    + (4 * player.HR);
+        return(totalBases);
+    }
+
+    //********************************************************************
+    // Function: calcBattingAverage()
+    //
+    // Purpose: calculate players batting average:          
+    //          Number of Hits (divided by) Number of At Bats
+    //
+    // Parameters:  
+    //             player - struct of type playerStats
+    //             contains player statistics needed for calculating
+    //
+    // Returns:
+    //    battingAverage - float containing players batting average
+    //********************************************************************
+
+    float calcBattingAverage(struct playerStats player) 
+    {
+        float battingAverage = 0.0;
+        // Number of Hits (divided by) Number of At Bats
+        battingAverage = (player._1B + player._2B + player._3B + player.HR)/ (float) player.AB;
+        return(battingAverage);
+    }
+    
+    //********************************************************************
+    // Function: calcHomeRunRatio()
+    //
+    // Purpose: calculate players Home Run Ratio:          
+    //          Number of Home Runs Hit (divided by) Number of At Bats
+    //
+    // Parameters:  
+    //             player - struct of type playerStats
+    //             contains player statistics needed for calculating
+    //
+    // Returns:
+    //    homeRunRatio - float containing players home run ratio
+    //********************************************************************
+
+    float calcHomeRunRatio(struct playerStats player)
+    {
+        float homeRunRatio;
+        // Number of Home Runs Hit (divided by) Number of At Bats
+        homeRunRatio = player.HR / (float) player.AB;
+        return(homeRunRatio);
+    }
+    
+    //********************************************************************
+    // Function: calcStrikeOutRatio()
+    //
+    // Purpose: calculate players Strike Out Ratio:          
+    //          Number of Strikeouts (divided by) Number of At Bats
+    //
+    // Parameters:  
+    //             player - struct of type playerStats
+    //             contains player statistics needed for calculating
+    //
+    // Returns:
+    //    strikeOutRatio - float containing players strike out ratio
+    //********************************************************************
+
+    float calcStrikeOutRatio(struct playerStats player)
+    {
+        float strikeOutRatio;
+        // Number of Strikeouts (divided by) Number of At Bats
+        strikeOutRatio = player.SO / (float) player.AB;
+        return(strikeOutRatio);
+    }
+
+    //********************************************************************
+    // Function: calcOnBasePercentage()
+    //
+    // Purpose: calculate players on base percentage:          
+    // (Hits + Walks + Hit-By-Pitch) divided by (At Bats + Walks+ Hit-By-Pitch + Sac Flys)          
+    //
+    // Parameters:  
+    //             player - struct of type playerStats
+    //             contains player statistics needed for calculating
+    //
+    // Returns:
+    //    onBasePercentage - float containing players on base percentage
+    //********************************************************************
+
+    float calcOnBasePercentage(struct playerStats player)
+    {
+        float onBasePercentage;
+        // (Hits + Walks + Hit-By-Pitch) divided by (At Bats + Walks+ Hit-By-Pitch + Sac Flys)
+        onBasePercentage = ((player._1B + player._2B + player._3B + player.HR) + player.BB + player.HP)
+                            / (float)(player.AB + player.BB + player.HP + player.SF);
+        return(onBasePercentage);
+    }
+
+    //********************************************************************
+    // Function: calcSluggingPercentage()
+    //
+    // Purpose: calculate players slugging percentage:          
+    //   Number of (Singles + [2 x Doubles] +[ 3 x Triples] + [4 x Home Runs]) divided by At Bats
+    //
+    // Parameters:  
+    //             player - struct of type playerStats
+    //             contains player statistics needed for calculating
+    //
+    // Returns:
+    //    sluggingPercentage - float containing players slugging percentage
+    //********************************************************************
+    float calcSluggingPercentage(struct playerStats player)
+    {
+        float sluggingPercentage;
+        // Number of (Singles + [2 x Doubles] +[ 3 x Triples] + [4 x Home Runs]) divided by At Bats
+        sluggingPercentage = (player._1B + (2 * player._2B) + (3 * player._3B) + (4 * player.HR)) 
+                                / (float) player.AB;
+        return(sluggingPercentage);
+    }
+
+9) Develop a set of structures that could be used to model the information about a movie collection.
+
+    typedef enum {
+    G,
+    PG,
+    PG13,
+    R
+    } rating;
+
+    struct date
+    {
+        int month;
+        int day;
+        int year;
+    };
+
+    struct name  // struct to hold a name
+    {
+        char firstName[20];
+        char lastName[20];
+    };
+
+    struct movie
+    {
+        rating mpaaRating;
+        struct date releaseDate;
+        struct name directorName;
+        struct name starringActor1;
+        struct name starringActor2;
+        float runtime; // length of movie
+        float boxOfficeGross; // amount of money made
+        float tomatoMeter; // score on rottentomatoes.com
+        char category[20];
+        char title[20];
+    };
+
+    int main()
+    {
+        struct movie myMovie[1000];
+        return(0);
+    }

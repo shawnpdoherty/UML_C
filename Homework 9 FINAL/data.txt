@@ -1,0 +1,5 @@
+Connie J Cobol 98401 10.60 12 Galacy Row; 1 11 1968 5000 1 0 0 0
+Mary P Apl 526448 9.75 129 Galactica Way; 3 6 1994 1000 0 0 0 0
+Frank K Fortran 765349 10.50 17 Skywalker Ln.; 22 7 1963 2000 1 0 0 0
+Jeff B Ada 34645 12.25 11 Battlefront Zone; 27 12 1837 2700 0 0 0 0
+Anton T Pascal 127615 10.00 16 Enterprise St.; 12 12 1912 1000 1 0 0 0
