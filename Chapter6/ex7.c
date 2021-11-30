@@ -9,7 +9,6 @@
 */
 #include <stdio.h>
 
-// Set all elements Pi to 0, 2 <= i <=n.
 int main(void)
 {
     int n = 150;
