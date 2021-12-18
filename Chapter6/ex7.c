@@ -15,7 +15,7 @@ int main(void)
     // Step 1: Define an array of integers P.
     int P[n];
     // Set all elements to 0.
-    for (int i = 0; i < n; ++i)
+    for (int i = 0; i <= n; ++i)
         P[i] = 0;
     // Step 2: Set i to 2.
     int i = 2;
